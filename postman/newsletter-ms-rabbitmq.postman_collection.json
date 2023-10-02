@@ -1,0 +1,667 @@
+{
+	"info": {
+		"_postman_id": "62f80501-c09d-4a3f-9153-7cfdcfea3d2a",
+		"name": "newsletter-ms-rabbitmq",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29331482"
+	},
+	"item": [
+		{
+			"name": "API",
+			"item": [
+				{
+					"name": "news",
+					"item": [
+						{
+							"name": "GetNews",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"eureka-client-newsletter",
+										"api",
+										"v1",
+										"news"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GetNewsExample",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8765",
+											"path": [
+												"eureka-client-newsletter",
+												"api",
+												"v1",
+												"news"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "transfer-encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 02 Oct 2023 19:44:24 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"651b0ea7a72d2b27e25afbcb\",\n        \"title\": \"Título da notícia 1\",\n        \"date\": \"EEE MMM dd HH:mm:ss zzz yyyy\",\n        \"editorName\": \"Editor da Notícia 1\",\n        \"posts\": null\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GetNewsById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news/id/651b0ea7a72d2b27e25afbcb",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"eureka-client-newsletter",
+										"api",
+										"v1",
+										"news",
+										"id",
+										"651b0ea7a72d2b27e25afbcb"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GetNewsByIdExample",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news/id/651b0ea7a72d2b27e25afbcb",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8765",
+											"path": [
+												"eureka-client-newsletter",
+												"api",
+												"v1",
+												"news",
+												"id",
+												"651b0ea7a72d2b27e25afbcb"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "transfer-encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 02 Oct 2023 19:44:59 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"651b0ea7a72d2b27e25afbcb\",\n    \"title\": \"Título da notícia 1\",\n    \"date\": \"EEE MMM dd HH:mm:ss zzz yyyy\",\n    \"editorName\": \"Editor da Notícia 1\",\n    \"posts\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "GetNewsByPostId",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news/post/id/651b21ce10351f74b00e8b75",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"eureka-client-newsletter",
+										"api",
+										"v1",
+										"news",
+										"post",
+										"id",
+										"651b21ce10351f74b00e8b75"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateNews",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Título da notícia 5\",\r\n  \"date\": \"Seg Out 03 14:30:00 UTC 2025\",\r\n  \"editorName\": \"Editor da Notícia 5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"eureka-client-newsletter",
+										"api",
+										"v1",
+										"news"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CreateNewsExample",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"title\": \"Título da notícia 3\",\r\n  \"date\": \"Seg Out 03 14:30:00 UTC 2023\",\r\n  \"editorName\": \"Editor da Notícia 3\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8765",
+											"path": [
+												"eureka-client-newsletter",
+												"api",
+												"v1",
+												"news"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "transfer-encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 02 Oct 2023 21:15:29 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"651b32f1ff093a65552aff3e\",\n    \"title\": \"Título da notícia 3\",\n    \"date\": \"Seg Out 03 14:30:00 UTC 2023\",\n    \"editorName\": \"Editor da Notícia 3\",\n    \"posts\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "AddPost",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news/651b0ea7a72d2b27e25afbcb/addPostToNews/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"eureka-client-newsletter",
+										"api",
+										"v1",
+										"news",
+										"651b0ea7a72d2b27e25afbcb",
+										"addPostToNews",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "AddPostToNewsExample",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"651b21ce10351f74b00e8b75\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news/news/651b0ea7a72d2b27e25afbcb/addPostToNews",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8765",
+											"path": [
+												"eureka-client-newsletter",
+												"api",
+												"v1",
+												"news",
+												"news",
+												"651b0ea7a72d2b27e25afbcb",
+												"addPostToNews"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "transfer-encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 02 Oct 2023 20:10:55 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"651b0ea7a72d2b27e25afbcb\",\n    \"title\": \"Título da notícia 1\",\n    \"date\": \"EEE MMM dd HH:mm:ss zzz yyyy\",\n    \"editorName\": \"Editor da Notícia 1\",\n    \"posts\": [\n        {\n            \"id\": \"651b21ce10351f74b00e8b75\",\n            \"title\": \"Título do post 1\",\n            \"authorName\": \"Autor do nome 1\",\n            \"body\": \"Corpo do post 1\",\n            \"tags\": null\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "UpdateNews",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"651b0ea7a72d2b27e25afbcb\",\r\n    \"title\": \"Titulo atualizado\",\r\n    \"date\": \"20230210\",\r\n    \"editorName\": \"Autor atualizado\",\r\n    \"posts\": [\r\n        {\r\n            \"id\": \"651b21ce10351f74b00e8b75\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"eureka-client-newsletter",
+										"api",
+										"v1",
+										"news"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "UpdateNewsExample",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"651b0ea7a72d2b27e25afbcb\",\r\n    \"title\": \"Titulo atualizado\",\r\n    \"date\": \"20230210\",\r\n    \"editorName\": \"Autor atualizado\",\r\n    \"posts\": [\r\n        {\r\n            \"id\": \"651b21ce10351f74b00e8b75\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8765",
+											"path": [
+												"eureka-client-newsletter",
+												"api",
+												"v1",
+												"news"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "transfer-encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 02 Oct 2023 21:23:23 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"651b0ea7a72d2b27e25afbcb\",\n    \"title\": \"Titulo atualizado\",\n    \"date\": \"20230210\",\n    \"editorName\": \"Autor atualizado\",\n    \"posts\": [\n        {\n            \"id\": \"651b21ce10351f74b00e8b75\",\n            \"title\": null,\n            \"authorName\": null,\n            \"body\": null,\n            \"tags\": null\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "DeleteNewsById",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news/id/651b32f1ff093a65552aff3e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"eureka-client-newsletter",
+										"api",
+										"v1",
+										"news",
+										"id",
+										"651b32f1ff093a65552aff3e"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DeleteNewsByIdExample",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/news/id/651b32f1ff093a65552aff3e",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8765",
+											"path": [
+												"eureka-client-newsletter",
+												"api",
+												"v1",
+												"news",
+												"id",
+												"651b32f1ff093a65552aff3e"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 02 Oct 2023 21:24:05 GMT"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "posts",
+					"item": [
+						{
+							"name": "CreatePost",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Título do post 1\",\r\n  \"authorName\": \"Autor do nome 1\",\r\n  \"body\": \"Corpo do post 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/posts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"eureka-client-newsletter",
+										"api",
+										"v1",
+										"posts"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CreatePostExample",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"title\": \"Título do post 1\",\r\n  \"authorName\": \"Autor do nome 1\",\r\n  \"body\": \"Corpo do post 1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8765/eureka-client-newsletter/api/v1/posts",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8765",
+											"path": [
+												"eureka-client-newsletter",
+												"api",
+												"v1",
+												"posts"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "transfer-encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 02 Oct 2023 20:02:24 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"651b21ce10351f74b00e8b75\",\n    \"title\": \"Título do post 1\",\n    \"authorName\": \"Autor do nome 1\",\n    \"body\": \"Corpo do post 1\",\n    \"tags\": null\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "logs",
+					"item": [
+						{
+							"name": "GetLogs",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8765/eureka-client-logpool/api/v1/logs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"eureka-client-logpool",
+										"api",
+										"v1",
+										"logs"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GetEmployee",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/v1/employees",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"v1",
+												"employees"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 04 Sep 2023 18:59:03 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"64f628b69290503d7ca94a0a\",\n        \"firstName\": \"João\",\n        \"lastName\": \"Silva\",\n        \"level\": \"Junior\",\n        \"wage\": 5000\n    },\n    {\n        \"id\": \"64f628da9290503d7ca94a0b\",\n        \"firstName\": \"Renan\",\n        \"lastName\": \"Cardoso\",\n        \"level\": \"Pleno\",\n        \"wage\": 7000\n    }\n]"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

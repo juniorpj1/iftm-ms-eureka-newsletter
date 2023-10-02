@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: eureka-client-logpool
+  data:
+    mongodb:
+      port: 27017
+      host: localhost
+      database: newsletter
+  rabbitmq:
+    addresses: amqps://deipzzxi:V5qesrSwgQYQkK7C3Pd3sU9ZFERBJx6E@shark.rmq.cloudamqp.com/deipzzxi
+    queue: newsletter.queue
+
+# Configuracao da porta do serviço de forma aleatoria
+server:
+  port: ${PORT:0}
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+# RabbitMQ - Variaveis de ambiente customizadas
+newsletter:
+  rabbitmq:
+    exchange: newsletter.exchange
+    routingKey: newsletter.post.routingKey
+    queue: newsletter.queue
+
+# Mostrar Queries MongoDB no Terminal:
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
