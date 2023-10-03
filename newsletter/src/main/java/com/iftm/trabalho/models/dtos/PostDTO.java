@@ -10,18 +10,17 @@ import java.util.Objects;
 
 public class PostDTO implements Serializable {
 
-    private String id;
     private String title;
 
     private String authorName;
 
     private String body;
 
-    private List<Tags> tags;
+    private List<TagsDTO> tags;
 
     public PostDTO() { }
 
-    public PostDTO(String title, String authorName, String body, List<Tags> tags) {
+    public PostDTO(String title, String authorName, String body, List<TagsDTO> tags) {
         this.title = title;
         this.authorName = authorName;
         this.body = body;
@@ -29,42 +28,28 @@ public class PostDTO implements Serializable {
     }
 
     public PostDTO(Post post) {
-        if(post.getId() != null)
-            this.id = post.getId().toString();
         this.title = post.getTitle();
         this.authorName = post.getAuthorName();
         this.body = post.getBody();
         if (post.getTags() != null)
             this.tags = post.getTags().stream().map(tags -> {
-                return tags;
+                return new TagsDTO(tags);
             }).collect(java.util.stream.Collectors.toList());
     }
 
     public Post toPost() {
-        ObjectId id = null;
-        if(this.id != null)
-            id = new ObjectId(this.id);
 
         List<Tags> tags = null;
         if(this.tags != null)
             tags = this.tags.stream().map(tagsDTO -> {
-                return tagsDTO;
+                return tagsDTO.toTags();
             }
             ).collect(java.util.stream.Collectors.toList());
 
-        return new Post(id,
-                this.title,
+        return new Post(this.title,
                 this.authorName,
                 this.body,
                 tags);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -91,11 +76,11 @@ public class PostDTO implements Serializable {
         this.body = body;
     }
 
-    public List<Tags> getTags() {
+    public List<TagsDTO> getTags() {
         return tags;
     }
 
-    public void setTags(List<Tags> tags) {
+    public void setTags(List<TagsDTO> tags) {
         this.tags = tags;
     }
 
@@ -104,19 +89,18 @@ public class PostDTO implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PostDTO postDTO = (PostDTO) o;
-        return Objects.equals(id, postDTO.id) && Objects.equals(title, postDTO.title) && Objects.equals(authorName, postDTO.authorName) && Objects.equals(body, postDTO.body) && Objects.equals(tags, postDTO.tags);
+        return Objects.equals(title, postDTO.title) && Objects.equals(authorName, postDTO.authorName) && Objects.equals(body, postDTO.body) && Objects.equals(tags, postDTO.tags);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, authorName, body, tags);
+        return Objects.hash(title, authorName, body, tags);
     }
 
     @Override
     public String toString() {
         return "PostDTO{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", body='" + body + '\'' +
                 ", tags=" + tags +

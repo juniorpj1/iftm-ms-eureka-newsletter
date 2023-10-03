@@ -25,7 +25,7 @@ public class RabbitMqSendLog {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void sendLog(LogDTO<NewsDTO> newsDTO) {
+    public void sendLog(LogDTO newsDTO) {
         rabbitTemplate.execute(channel -> {
             channel.exchangeDeclare(exchange, "direct", true);
             channel.queueDeclare(queue, true, false, false, null);

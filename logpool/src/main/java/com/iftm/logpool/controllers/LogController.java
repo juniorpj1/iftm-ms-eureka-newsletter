@@ -1,6 +1,5 @@
 package com.iftm.logpool.controllers;
 
-import com.iftm.logpool.models.dtos.NewsDTO;
 import com.iftm.logpool.models.dtos.LogDTO;
 import com.iftm.logpool.services.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class LogController {
     private LogService service;
 
     @GetMapping
-    public ResponseEntity<List<LogDTO<NewsDTO>>> findAll() {
+    public ResponseEntity<List<LogDTO<Object>>> findAll() {
         return service.findAll();
     }
 }

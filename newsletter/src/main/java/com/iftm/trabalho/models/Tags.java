@@ -1,32 +1,16 @@
 package com.iftm.trabalho.models;
 
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
 
-@Document(collection = "tags")
 public class Tags {
-
-    @Id
-    private ObjectId id;
-
     private String name;
 
     public Tags() { }
 
-    public Tags(ObjectId id, String name) {
-        this.id = id;
+    public Tags(String name) {
         this.name = name;
-    }
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -42,19 +26,18 @@ public class Tags {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tags tags = (Tags) o;
-        return Objects.equals(id, tags.id) && Objects.equals(name, tags.name);
+        return Objects.equals(name, tags.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(name);
     }
 
     @Override
     public String toString() {
         return "Tags{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 '}';
     }
 }

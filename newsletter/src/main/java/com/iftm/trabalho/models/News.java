@@ -18,7 +18,7 @@ public class News {
     private String title;
     private String date;
     private String editorName;
-    @DBRef
+
     private List<Post> posts;
 
     public News() { }

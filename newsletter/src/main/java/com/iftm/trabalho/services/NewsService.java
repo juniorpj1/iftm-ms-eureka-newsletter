@@ -2,20 +2,15 @@ package com.iftm.trabalho.services;
 
 import com.iftm.trabalho.mensages.RabbitMqSendLog;
 import com.iftm.trabalho.models.News;
-import com.iftm.trabalho.models.Post;
 import com.iftm.trabalho.models.dtos.LogDTO;
 import com.iftm.trabalho.models.dtos.NewsDTO;
-import com.iftm.trabalho.models.dtos.PostDTO;
 import com.iftm.trabalho.repositories.NewsRepository;
-import com.iftm.trabalho.repositories.PostRepository;
-import com.iftm.trabalho.repositories.TagsRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,12 +19,6 @@ public class NewsService {
 
     @Autowired
     private NewsRepository repository;
-
-    @Autowired
-    private PostRepository postRepository;
-
-    @Autowired
-    private TagsRepository tagsRepository;
 
     @Autowired
     private RabbitMqSendLog rabbitMqSendLog;
@@ -70,7 +59,7 @@ public class NewsService {
             return ResponseEntity.badRequest().build();
         }
 
-    rabbitMqSendLog.sendLog(new LogDTO<NewsDTO>("created", new NewsDTO(repository.save(newsDTO.toNews()))));
+    rabbitMqSendLog.sendLog(new LogDTO("created", new NewsDTO(repository.save(newsDTO.toNews()))));
 
         return ResponseEntity.ok(new NewsDTO(repository.save(newsDTO.toNews())));
     }
@@ -93,34 +82,9 @@ public class NewsService {
             return postDTO.toPost();
         }).collect(Collectors.toList()));
 
-        rabbitMqSendLog.sendLog(new LogDTO<NewsDTO>("updated", new NewsDTO(repository.save(dbNewsObj))));
+        rabbitMqSendLog.sendLog(new LogDTO("updated", new NewsDTO(repository.save(dbNewsObj))));
 
         return ResponseEntity.ok(new NewsDTO(repository.save(dbNewsObj)));
-
-    }
-
-    public ResponseEntity<NewsDTO> addPostToNews(ObjectId newsId, PostDTO postDTO) {
-        if (newsId == null || postDTO.getId() == null){
-            return ResponseEntity.badRequest().build();
-        }
-
-        var dbNews = repository.findById(newsId);
-        var dbPost = postRepository.findById(new ObjectId(postDTO.getId()));
-
-        if(dbNews.isEmpty() || dbPost.isEmpty())
-            return ResponseEntity.notFound().build();
-
-        var curNews = dbNews.get();
-        List<Post> posts;
-        if (curNews.getPosts() == null){
-            posts = new ArrayList<Post>();
-            curNews.setPosts(posts);
-        }
-
-
-
-        curNews.getPosts().add(dbPost.get());
-        return ResponseEntity.ok(new NewsDTO(repository.save(curNews)));
 
     }
 
@@ -129,40 +93,20 @@ public class NewsService {
             return ResponseEntity.badRequest().build();
         }
 
+        var dbNewsBeforeDelete = repository.findById(id);
         repository.deleteById(id);
+        rabbitMqSendLog.sendLog(new LogDTO("deleted", new NewsDTO(dbNewsBeforeDelete.get())));
 
         var dbNews = repository.findById(id);
         if(dbNews.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
         }
 
-        rabbitMqSendLog.sendLog(new LogDTO<NewsDTO>("deleted", new NewsDTO(dbNews.get())));
+
 
         return ResponseEntity.ok().build();
     }
 
-
-    public ResponseEntity<NewsDTO> addPost(ObjectId newsId, PostDTO postDTO) {
-        if (newsId == null || postDTO.getId() == null){
-            return ResponseEntity.badRequest().build();
-        }
-
-        var dbNews = repository.findById(newsId);
-        var dbPost = postRepository.findById(new ObjectId(postDTO.getId()));
-
-        if(dbNews.isEmpty() || dbPost.isEmpty())
-            return ResponseEntity.notFound().build();
-
-        var curNews = dbNews.get();
-        List<Post> posts;
-        if (curNews.getPosts() == null){
-            posts = new ArrayList<Post>();
-            curNews.setPosts(posts);
-        }
-
-        curNews.getPosts().add(dbPost.get());
-        return ResponseEntity.ok(new NewsDTO(repository.save(curNews)));
-    }
 
 
 }

@@ -1,17 +1,11 @@
 package com.iftm.trabalho.models;
 
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.Objects;
 
-@Document(collection = "posts")
 public class Post {
-
-    @Id
-    private ObjectId id;
 
     private String title;
 
@@ -23,20 +17,11 @@ public class Post {
 
     public Post() { }
 
-    public Post(ObjectId id, String title, String authorName, String body, List<Tags> tags) {
-        this.id = id;
+    public Post(String title, String authorName, String body, List<Tags> tags) {
         this.title = title;
         this.authorName = authorName;
         this.body = body;
         this.tags = tags;
-    }
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -76,19 +61,18 @@ public class Post {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
-        return Objects.equals(id, post.id) && Objects.equals(title, post.title) && Objects.equals(authorName, post.authorName) && Objects.equals(body, post.body) && Objects.equals(tags, post.tags);
+        return Objects.equals(title, post.title) && Objects.equals(authorName, post.authorName) && Objects.equals(body, post.body) && Objects.equals(tags, post.tags);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, authorName, body, tags);
+        return Objects.hash(title, authorName, body, tags);
     }
 
     @Override
     public String toString() {
         return "Post{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", body='" + body + '\'' +
                 ", tags=" + tags +

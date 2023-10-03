@@ -1,7 +1,6 @@
 package com.iftm.trabalho.controllers;
 
 import com.iftm.trabalho.models.dtos.NewsDTO;
-import com.iftm.trabalho.models.dtos.PostDTO;
 import com.iftm.trabalho.services.NewsService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +34,6 @@ public class NewsController {
     @PostMapping
     public ResponseEntity<NewsDTO> create(@RequestBody NewsDTO newsDTO) {
         return service.save(newsDTO);
-    }
-
-    @PostMapping("/news/{id}/addPostToNews")
-    public ResponseEntity<NewsDTO> addPost(@PathVariable("id") ObjectId id, @RequestBody PostDTO postDTO) {
-        return service.addPost(id, postDTO);
     }
 
     @PutMapping
